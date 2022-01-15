@@ -3,28 +3,6 @@
 #include <memory>
 #include <esp_log.h>
 
-#define logE(format, ...) this->logger().logf(LogLevel::Error, format, ##__VA_ARGS__)
-#define logW(format, ...) this->logger().logf(LogLevel::Warning, format, ##__VA_ARGS__)
-#define logI(format, ...) this->logger().logf(LogLevel::Info, format, ##__VA_ARGS__)
-#define logD(format, ...) this->logger().logf(LogLevel::Debug, format, ##__VA_ARGS__)
-#define logV(format, ...) this->logger().logf(LogLevel::Verbose, format, ##__VA_ARGS__)
-
-#if LOGGING_REDEFINE_LOG_X
-
-#undef log_e
-#undef log_w
-#undef log_i
-#undef log_d
-#undef log_v
-
-#define log_e(format, ...) Logging::system().logf(LogLevel::Error, format, ##__VA_ARGS__)
-#define log_w(format, ...) Logging::system().logf(LogLevel::Warning, format, ##__VA_ARGS__)
-#define log_i(format, ...) Logging::system().logf(LogLevel::Info, format, ##__VA_ARGS__)
-#define log_d(format, ...) Logging::system().logf(LogLevel::Debug, format, ##__VA_ARGS__)
-#define log_v(format, ...) Logging::system().logf(LogLevel::Verbose, format, ##__VA_ARGS__)
-
-#endif
-
 namespace esp32m
 {
 
@@ -311,3 +289,25 @@ namespace esp32m
   };
 
 } // namespace esp32m
+
+#define logE(format, ...) this->logger().logf(esp32m::LogLevel::Error, format, ##__VA_ARGS__)
+#define logW(format, ...) this->logger().logf(esp32m::LogLevel::Warning, format, ##__VA_ARGS__)
+#define logI(format, ...) this->logger().logf(esp32m::LogLevel::Info, format, ##__VA_ARGS__)
+#define logD(format, ...) this->logger().logf(esp32m::LogLevel::Debug, format, ##__VA_ARGS__)
+#define logV(format, ...) this->logger().logf(esp32m::LogLevel::Verbose, format, ##__VA_ARGS__)
+
+#if LOGGING_REDEFINE_LOG_X
+
+#undef log_e
+#undef log_w
+#undef log_i
+#undef log_d
+#undef log_v
+
+#define log_e(format, ...) esp32m::Logging::system().logf(esp32m::LogLevel::Error, format, ##__VA_ARGS__)
+#define log_w(format, ...) esp32m::Logging::system().logf(esp32m::LogLevel::Warning, format, ##__VA_ARGS__)
+#define log_i(format, ...) esp32m::Logging::system().logf(esp32m::LogLevel::Info, format, ##__VA_ARGS__)
+#define log_d(format, ...) esp32m::Logging::system().logf(esp32m::LogLevel::Debug, format, ##__VA_ARGS__)
+#define log_v(format, ...) esp32m::Logging::system().logf(esp32m::LogLevel::Verbose, format, ##__VA_ARGS__)
+
+#endif
